@@ -1,4 +1,4 @@
-[12:05 am, 27/4/2024] Yoga: package token;
+package token;
 import java.io.*;
 import java.util.*;
 class tokenring {
@@ -31,7 +31,7 @@ System.out.println("data "+a+"forwarded by "+i);
 }
 System.out.println("Reciever "+r+"received data: "+a+"\n");
 token=s;
-[12:05 am, 27/4/2024] Yoga: do {
+do {
 try {
 if(flag==1)
 System.out.print("Invalid Input!!...");
