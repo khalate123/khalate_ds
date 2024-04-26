@@ -1,0 +1,88 @@
+#ServerInterface.java:
+import java.rmi.*;
+interface ServerInterface extends Remote{
+public double Addition(double num1, double num2)
+throws RemoteException;
+public double Subtraction(double num1, double num2)
+throws RemoteException;
+public double Division(double num1, double num2)
+throws RemoteException;
+public double Multiplication(double num1, double num2)
+throws RemoteException;
+}
+
+#ServerImplementation.java
+import java.rmi.*;
+import java.rmi.server.*;
+public class ServerImplementation extends UnicastRemoteObject implements
+ServerInterface{
+public ServerImplementation() throws RemoteException{
+}
+public double Addition(double num1, double num2)
+throws RemoteException{
+return num1 + num2;
+}
+public double Subtraction(double num1, double num2)
+throws RemoteException{
+return num1 - num2;
+}
+public double Multiplication(double num1, double num2)
+throws RemoteException{
+return num1 * num2;
+}
+public double Division(double num1, double num2)
+throws RemoteException{
+return num1 / num2;
+}
+}
+
+
+#Server.java:
+import java.rmi.*;
+public class Server{
+public static void main(String[] args){
+try{
+ServerImplementation serverImpl = new
+ServerImplementation();
+Naming.rebind("Server",serverImpl);
+System.out.println("Server is Ready.....");
+}
+catch(Exception e){
+System.out.println("Exception occured at Server! "+
+e.getMessage());
+}
+}
+}
+
+#Client.java:
+import java.rmi.*;
+import java.util.Scanner;
+public class Client{
+public static void main(String[] args){
+Scanner sc = new Scanner(System.in);
+try{
+String serverUrl = "rmi://localhost/Server";
+ServerInterface serverIntf = (ServerInterface)
+Naming.lookup(serverUrl);
+System.out.print("Enter First Number: ");
+double num1 = sc.nextDouble();
+System.out.print("Enter Second Number: ");
+double num2 = sc.nextDouble();
+System.out.println("*------Results-----------*");
+System.out.println("Addition is: " +
+serverIntf.Addition(num1,num2));
+System.out.println("Subtraction is: " +
+serverIntf.Subtraction(num1,num2));
+System.out.println("Division is: " +
+serverIntf.Division(num1,num2));
+System.out.println("Multiplication is: " +
+serverIntf.Multiplication(num1,num2));
+}
+catch(Exception e){
+System.out.println("Exception occured at Client! " +
+e.getMessage());
+}
+}
+}
+
+
