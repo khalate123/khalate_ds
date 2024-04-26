@@ -1,0 +1,76 @@
+[12:05 am, 27/4/2024] Yoga: package token;
+import java.io.*;
+import java.util.*;
+class tokenring {
+public static void main(String args[]) throws Throwable {
+Scanner sc=new Scanner(System.in);
+System.out.println("Enter the num of nodes");
+int n=sc.nextInt();
+int m=n-1;
+int token=0;
+int ch=0,flag=0;
+for (int i=0;i<n;i++) {
+System.out.println(" "+i);
+}
+System.out.println(" "+0);
+do {
+System.out.println("Enter sender: ");
+int s=sc.nextInt();
+System.out.println("Enter reciever: ");
+int r=sc.nextInt();
+System.out.println("Enter data: ");
+int a=sc.nextInt();
+System.out.println("Token passing: ");
+for (int i=token,j=token;(i%n) !=s; i++,j=(j+1)%n) {
+System.out.println(" "+j+"->");
+}
+System.out.println(" "+s);
+System.out.println("sender "+s+"sending data "+a);
+for(int i=s+1;i!=r;i=(i+1)%n) {
+System.out.println("data "+a+"forwarded by "+i);
+}
+System.out.println("Reciever "+r+"received data: "+a+"\n");
+token=s;
+[12:05 am, 27/4/2024] Yoga: do {
+try {
+if(flag==1)
+System.out.print("Invalid Input!!...");
+System.out.print("Do you want to send again?? enter 1 
+for Yes and 0for No: ");
+ch=sc.nextInt();
+if (ch!=1 && ch !=0)
+flag=1;
+else
+flag=0;
+}
+catch (InputMismatchException e) {
+System.out.println("Invalid Input");
+}
+}while (ch !=1 && ch!=0);
+}while (ch==1);
+}
+}
+OUTPUT:
+Enter the num of nodes
+6
+0
+1
+2
+3
+4
+5
+0
+Enter sender: 
+2
+Enter reciever: 
+4
+Enter data: 
+50
+Token passing: 
+0->
+1->
+2
+sender 2sending data 50
+data 50forwarded by 3
+Reciever 4received data: 50
+Do you want to send again?? enter 1 for Yes and 0for No: 0
